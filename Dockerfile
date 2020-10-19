@@ -14,5 +14,8 @@ RUN yum -y install etcd
 RUN yum -y install gcc pcre-devel tar make -y
 RUN yum -y install haproxy
 
-COPY haproxy.cfg /etc/haproxy/haproxy.cfg
-COPY etcd.conf /etc/etcd/etcd.conf
+RUN wget https://github.com/juarezlucasa/qa-haproxy-fol/blob/main/etcd.conf -O /tmp/etcd.conf
+RUN wget https://github.com/juarezlucasa/qa-haproxy-fol/blob/main/haproxy.conf -O /tmp/haproxy.conf
+
+RUN mv /tmp/etcd.conf /etc/etcd/etcd.conf
+RUN mv /tmp/haproxy.cfg /etc/haproxy/haproxy.cfg
