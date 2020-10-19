@@ -11,11 +11,11 @@ CMD ["/usr/sbin/init"]
 
 RUN yum -y update && yum install -y initscripts
 RUN yum -y install etcd
-RUN yum -y install gcc pcre-devel tar make -y
+RUN yum -y install gcc pcre-devel tar make git -y
 RUN yum -y install haproxy
 
-RUN wget https://github.com/juarezlucasa/qa-haproxy-fol/blob/main/etcd.conf -O /tmp/etcd.conf
-RUN wget https://github.com/juarezlucasa/qa-haproxy-fol/blob/main/haproxy.conf -O /tmp/haproxy.conf
+WORKDIR /tmp
+RUN git clone https://github.com/juarezlucasa/qa-haproxy-fol.git
 
-RUN mv /tmp/etcd.conf /etc/etcd/etcd.conf
-RUN mv /tmp/haproxy.cfg /etc/haproxy/haproxy.cfg
+RUN mv /tmp/qa-haproxy-fol/etcd.conf /etc/etcd/etcd.conf
+RUN mv /tmp/qa-haproxy-fol/haproxy.cfg /etc/haproxy/haproxy.cfg
