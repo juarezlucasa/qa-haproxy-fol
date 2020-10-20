@@ -1,7 +1,12 @@
 FROM centos:7
 ADD ["http://www.haproxy.org/download/1.8/src/haproxy-1.8.20.tar.gz", "/tmp/"]
 
+WORKDIR /tmp
+RUN git clone https://github.com/juarezlucasa/qa-haproxy-fol.git
+
 RUN mkdir /etc/haproxy
+RUN mv /tmp/qa-haproxy-fol/haproxy.cfg /etc/haproxy/haproxy.cfg
+
 RUN yum -y update && \
     yum -y install wget tar gcc pcre-static pcre-devel make perl etcd zlib-devel openssl-devel systemd-devel make git &&  \
     groupadd -r haproxy && \
@@ -16,10 +21,7 @@ RUN yum -y update && \
     ln -s /usr/local/sbin/haproxy /usr/sbin/haproxy && \
     yum clean all; 
 
-WORKDIR /tmp
-RUN git clone https://github.com/juarezlucasa/qa-haproxy-fol.git
 RUN mv /tmp/qa-haproxy-fol/etcd.conf /etc/etcd/etcd.conf
-RUN mv /tmp/qa-haproxy-fol/haproxy.cfg /etc/haproxy/haproxy.cfg
 
 EXPOSE 80 443 13888 9000
 USER haproxy 
