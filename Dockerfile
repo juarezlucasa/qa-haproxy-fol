@@ -3,7 +3,7 @@ ADD ["http://www.haproxy.org/download/1.8/src/haproxy-1.8.20.tar.gz", "/tmp/"]
 
 RUN mkdir /etc/haproxy
 RUN yum -y update && \
-    yum -y install wget tar gcc pcre-static pcre-devel make perl etcd zlib-devel openssl-devel systemd-devel make &&  \
+    yum -y install wget tar gcc pcre-static pcre-devel make perl etcd zlib-devel openssl-devel systemd-devel make git &&  \
     groupadd -r haproxy && \
     useradd -g haproxy -d /etc/haproxy -s /sbin/nologin  -c "Haproxy User" haproxy && \
     chown -R haproxy:haproxy /etc/haproxy && \
