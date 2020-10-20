@@ -1,7 +1,7 @@
 FROM centos:7
 ADD ["http://www.haproxy.org/download/1.8/src/haproxy-1.8.20.tar.gz", "/tmp/"]
 
-RUN yun install git -y 
+RUN yum install git -y 
 
 WORKDIR /tmp
 RUN git clone https://github.com/juarezlucasa/qa-haproxy-fol.git
