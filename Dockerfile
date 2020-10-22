@@ -9,4 +9,6 @@ RUN mv /tmp/qa-haproxy-fol/etcd.conf /etc/etcd/etcd.conf
 
 EXPOSE 80 5432 7000
 
+USER haproxy
+
 CMD [ "/usr/sbin/haproxy", "-f", "/etc/haproxy/haproxy.cfg", "-p", "/run/haproxy.pid", "-Ds" ]
